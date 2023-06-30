@@ -1,24 +1,22 @@
 <template>
   <theme-provider :theme="theme">
-    
-    <div id = "nav">
-      <!-- <Nav>
-        v-bind: 
-      </Nav> -->
-      <!-- Router-Link to Home Page -->
-      
-      <!-- <router-link to="/">Home</router-link>
-      <router-view></router-view> -->
-
-      
-      <!-- Router-Link to About Me Page -->
-      <!-- <router-link to="/About">About</router-link> -->
-      <!-- Displays content from About Me Page -->
-
+    <!-- difference in colour near middle of page due to each div creating a new gradient => gradients dont line up, fix later -->
+    <div class = "div-main">
+      <div id = "app">
+      <Slide>
+        <router-link to='/'>
+          <span>Home</span>
+        </router-link>
+        <router-link to='About'>
+          <span>About</span>
+        </router-link>
+        <router-link to='Contact'>
+          <span>Contact</span>
+        </router-link>
+      </Slide>
     </div>
   
-    
-      <div>
+      <div id = "main">
         <hero
           v-bind:author="author"
           v-bind:subtitle="hero.subtitle"
@@ -35,7 +33,6 @@
             v-bind:links="product.links"
             v-bind:images="product.images"
           />
-          
           <minor-card-container>
             <minor-card
               v-for="(product, index) in products.minor && products.minor.slice(0,3)" :key="index"
@@ -55,39 +52,35 @@
             </logo-container>
           </logo-section-container>
         </card-container>
-        <foot v-bind:author="author" v-bind:footer="footer" />
+        <foot v-bind:author="author" v-bind:footer="footer"/>
         <light-toggle v-on:click="toggleTheme()"><span v-if="!isDark" >💡</span><span v-if="isDark">💡</span></light-toggle>
     </div>
+    </div>
+    
   
   </theme-provider>
 </template>
 
 <script>
 import Vue from 'vue'
-// import Nav from './Nav.vue'
 import styled from 'vue-styled-components'
 import Hero from './Hero.vue'
 import Card from './Card.vue'
-// import Navbar from './Nav.vue'
 import MinorCard from './MinorCard.vue'
 import LogoCard from './LogoCard.vue'
 import Foot from './Foot.vue'
 import { ThemeProvider, injectGlobal } from 'vue-styled-components'
-
 import { MainTitle } from './styles/Text.ts'
 import baseData from '@/data/fixtures.ts'
 import light from '@/themes/light.ts'
 import dark from '@/themes/dark.ts'
-
-// NavBar Start
-// import brandImage from '@/pictures/portfolio_website_1.png'
-
+//Hamburger Menu
+import { Slide } from 'vue-burger-menu';
 
 
 const localStore = Vue.observable({
   dark: false
 })
-
 const mutations = {
   toggleDark() {
     localStore.dark = !localStore.dark
@@ -111,7 +104,6 @@ const adjustTheme = () => {
     document.documentElement.style.setProperty("--link-color", light.color.link)
   }
 }
-
 if (window.matchMedia) {
   try {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
@@ -163,7 +155,6 @@ injectGlobal`
     font-style: italic;
     src: url("/fonts/SFProDisplay-RegularItalic.ttf");
   }
-
   html {
     font-family: 'SF Pro Display', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 18px;
@@ -173,15 +164,12 @@ injectGlobal`
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
   }
-
   body {
     margin: 0px;
   }
-
   html {
     scroll-behavior: smooth;
   }
-
   a {
     text-decoration: none;
     position: relative;
@@ -227,7 +215,7 @@ const MinorCardContainer = styled.div`
       margin: 16px 0px;
     }
   }
-  }
+}
 `
 
 const LogoSectionContainer = styled.div`
@@ -294,7 +282,8 @@ export default {
     MainTitle,
     LogoContainer,
     LogoSectionContainer,
-    LogoCard
+    LogoCard,
+    Slide
   },
   computed: {
     theme() {
@@ -311,7 +300,7 @@ export default {
     },
   },
   data: () => ({
-    ...baseData
+    ...baseData,
   }),
 
 }
@@ -332,16 +321,97 @@ setup()
 
 <style>
 /* Hack until createGlobalStyles comes to vue-styled-components */
-html {
+ html {
+  /* var(--main-background-color) creates color gradient */
+  /* Ensures no white "bar" at bottom of page, white bar appears if background removed */
   background: var(--main-background-color);
   background-color: var(--fallback-background-color);
 }
 
-body {
-  color: var(--main-color);
+/* provides uniform gradient background for larger div container holding navbar and main text*/
+.div-main{
+  background: var(--main-background-color);
+  background-color: var(--fallback-background-color); 
+  margin:0;
 }
 
+body {
+  color: var(--main-color);
+  margin: 0;
+  padding: 0;
+}
+.main
+{
+ background-color: var(--main-background-color);
+ color: var(--main-background-color);
+ background: var(--main-background-color);
+}
 a {
   color: var(--link-color);
 }
+.app{
+  background-color: var(--main-background-color);
+  color: var(--main-background-color);
+} 
+.bm-burger-button {
+      position: fixed;
+      width: 36px;
+      height: 30px;
+      left: 36px;
+      top: 36px;
+      cursor: pointer;
+    }
+    /* .bm-burger-bars {
+      background-color: #2b2b2b;
+    } */
+    .line-style {
+      position: absolute;
+      height: 20%;
+      left: 0;
+      right: 0;
+    }
+    .cross-style {
+      position: absolute;
+      top: 12px;
+      right: 2px;
+      cursor: pointer;
+    }
+    .bm-cross {
+      background: #bdc3c7;
+    }
+    .bm-cross-button {
+      height: 24px;
+      width: 24px;
+    }
+    .bm-menu {
+      height: 100%; /* 100% Full-height */
+      width: 0; /* 0 width - change this with JavaScript */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Stay on top */
+      top: 0;
+      left: 0;
+      /* background-color: rgb(63, 63, 65); Black */
+      overflow-x: hidden; /* Disable horizontal scroll */
+      padding-top: 60px; /* Place content 60px from the top */
+      transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
+    }
+
+    /* .bm-overlay {
+      background: rgba(0, 0, 0, 0.3);
+    } */
+    .bm-item-list {
+      color: #b8b7ad;
+      margin-left: 10%;
+      font-size: 30px;
+    }
+    .bm-item-list > * {
+      display: flex;
+      text-decoration: none;
+      padding: 0.7em;
+    }
+    .bm-item-list > * > span {
+      margin-left: 10px;
+      font-weight: 700;
+      color: white;
+    }
 </style>

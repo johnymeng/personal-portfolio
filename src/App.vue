@@ -1,12 +1,9 @@
 <template>
   <!-- <theme-provider :theme="theme"> -->
     
-    <div id = "nav">
+    <div>
       <!-- Router-Link to Home Page -->
-      <Navigation>
-
-      </Navigation>
-
+  
       <!-- <router-link to="/">Home</router-link> -->
       <router-view></router-view>
 
@@ -63,26 +60,23 @@
 </template>
 
 <script>
-  import Navigation from './components/Nav.vue'
-  // import Home from './components/Home.vue'
 
-  export default {
-    name: 'app',
-    components:{
-      'Navigation': Navigation
-    }
-  }
+  // export default {
+  //   name: 'app',
+  //   components:{
+  //   }
+  // }
 </script>
 
 <style>
-#app {
+/* #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
+} */
 </style>
 
 

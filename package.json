@@ -11,6 +11,7 @@
     "core-js": "^3.6.4",
     "node": "^20.2.0",
     "vue": "^2.6.11",
+    "vue-burger-menu": "^2.0.5",
     "vue-carousel": "^0.18.0",
     "vue-navigation-bar": "^4.1.0",
     "vue-router": "^3.6.5",
