@@ -16,7 +16,6 @@
     data(){
       return {
         email: 'john.meng@mail.utoronto.ca',
-        // web: 'maeganjwilson.github.com'
       }
     }
   }

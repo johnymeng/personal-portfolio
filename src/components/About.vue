@@ -1,5 +1,5 @@
 <template>
-  <div id = "app">
+  <div id = "app" class = "no-margin">
       <Slide>
         <router-link to='/'>
           <span>Home</span>
@@ -11,13 +11,18 @@
           <span>Contact</span>
         </router-link>
       </Slide>
-      <h1>About</h1>
-      <p>This is a Yui Fan-page</p>
-      <img src="/logos/yui_yuigahama_fan_art____at_least_i_tryed____by_ren_u_dbai7i5-400t.jpg" alt = "Yui">
-      <p>Look at this picture of Yui! Isn't Yui Yuigahama so pretty!</p>
-  </div>
 
-    
+      <div class = "no-margin">
+        <h1 class = "no-gap">About</h1>
+
+          <p>This is a Yui Fan-page</p>
+          <img src="/logos/yui_yuigahama_fan_art____at_least_i_tryed____by_ren_u_dbai7i5-400t.jpg" alt = "Yui">
+          <p>Look at this picture of Yui! Isn't Yui Yuigahama so pretty!</p>
+          <card>
+            <p>hi</p>
+          </card>
+      </div>
+  </div>  
 </template>
 
 
@@ -35,6 +40,16 @@ export default {
 <style>
 .app{
   text-align: center;
+}
+.no-gap{
+  margin: 0px;
+}
+.no-margin{
+  text-align: center;
+  margin: 0px;
+  background: var(--main-background-color);
+  background-color: var(--fallback-background-color);
+  height: 100%;
 }
 .bm-burger-button {
       position: fixed;
@@ -99,6 +114,3 @@ export default {
     }
   
 </style> 
-
-
-

@@ -16,6 +16,7 @@
     "vue-navigation-bar": "^4.1.0",
     "vue-router": "^3.6.5",
     "vue-styled-components": "^1.5.1",
+    "vue-ultimate-skeleton-cards": "^1.0.3",
     "yarn": "^1.22.19"
   },
   "devDependencies": {

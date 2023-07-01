@@ -17,11 +17,6 @@ const router = new VueRouter({
   mode: 'history'
 })
 
-// NavBar Components
-// const app = createApp(App);
-// app.component('vue-navigation-bar', VueNavigationBar);
-
-
 Vue.config.productionTip = false
 
 new Vue({
