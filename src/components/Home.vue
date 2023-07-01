@@ -320,6 +320,7 @@ setup()
 </style> -->
 
 <style>
+
 /* Hack until createGlobalStyles comes to vue-styled-components */
  html {
   /* var(--main-background-color) creates color gradient */
@@ -362,7 +363,7 @@ a {
       cursor: pointer;
     }
     .bm-burger-bars {
-      background-color: #2b2b2b;
+      background-color: #ffffff;
     }
     .line-style {
       position: absolute;
@@ -402,7 +403,7 @@ a {
     .bm-item-list {
       color: #b8b7ad;
       margin-left: 10%;
-      font-size: 30px;
+      font-size: 25px;
     }
     .bm-item-list > * {
       display: flex;

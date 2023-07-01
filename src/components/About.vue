@@ -1,5 +1,8 @@
 <template>
-  <div id = "app" class = "no-margin">
+  <theme-provider :theme="theme">
+    <!-- difference in colour near middle of page due to each div creating a new gradient => gradients dont line up, fix later -->
+    <div class = "div-main">
+      <div id = "app">
       <Slide>
         <router-link to='/'>
           <span>Home</span>
@@ -12,62 +15,276 @@
         </router-link>
       </Slide>
 
-      <div class = "no-margin">
-        <h1 class = "no-gap">‎ </h1>
-
-          <p>This is a Yui Fan-page</p>
-          <img src="/logos/yui_yuigahama_fan_art____at_least_i_tryed____by_ren_u_dbai7i5-400t.jpg" alt = "Yui">
-          <p>Look at this picture of Yui! Isn't Yui Yuigahama so pretty!</p>
-          
-         
-            <!-- <div>
-              <b-card no-body class="overflow-hidden" style="max-width: 540px;">
-                <b-row no-gutters>
-                  <b-col md="6">
-                    <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
-                  </b-col>
-                  <b-col md="6">
-                    <b-card-body title="Horizontal Card">
-                      <b-card-text>
-                        This is a wider card with supporting text as a natural lead-in to additional content.
-                        This content is a little bit longer.
-                      </b-card-text>
-                    </b-card-body>
-                  </b-col>
-                </b-row>
-              </b-card>
-            </div> -->
-
+      <card-container id="products">
+          <card class = "card"
+            v-for="(product, index) in products.featured" :key="index"
+            v-bind:name="product.name"
+            v-bind:medium="product.medium"
+            v-bind:summary="product.summary"
+            v-bind:copy="product.copy"
+            v-bind:links="product.links"
+            v-bind:images="product.images"
+          />
+        </card-container>
+        <foot v-bind:author="author" v-bind:footer="footer" class = "footer"/>
+        <light-toggle v-on:click="toggleTheme()"><span v-if="!isDark" >💡</span><span v-if="isDark">💡</span></light-toggle>
       </div>
-  </div>  
+    </div>
+  </theme-provider>
 </template>
 
-
-
 <script>
+import Vue from 'vue'
+import styled from 'vue-styled-components'
+// import Hero from './Hero.vue'
+import Card from './Card.vue'
+// import MinorCard from './MinorCard.vue'
+// import LogoCard from './LogoCard.vue'
+import Foot from './Foot.vue'
+import { ThemeProvider, injectGlobal } from 'vue-styled-components'
+// import { MainTitle } from './styles/Text.ts'
+import baseData from '@/data/fixtures.ts'
+import light from '@/themes/light.ts'
+import dark from '@/themes/dark.ts'
+//Hamburger Menu
 import { Slide } from 'vue-burger-menu';
 
-export default {
-  name: 'About', //this is the name of the component
-  components: {
-    Slide
+
+const localStore = Vue.observable({
+  dark: false
+})
+const mutations = {
+  toggleDark() {
+    localStore.dark = !localStore.dark
+  },
+  setDark(isDark) {
+    localStore.dark = isDark
   }
 }
+
+// Hack until createGlobalStyles comes to vue-styled-components
+const adjustTheme = () => {
+  if (localStore.dark) {
+    document.documentElement.style.setProperty("--main-color", dark.color.text)
+    document.documentElement.style.setProperty("--main-background-color", dark.color.background)
+    document.documentElement.style.setProperty("--fallback-background-color", dark.color.fallbackBackground)
+    document.documentElement.style.setProperty("--link-color", dark.color.link)
+  } else {
+    document.documentElement.style.setProperty("--main-color", light.color.text)
+    document.documentElement.style.setProperty("--main-background-color", light.color.background)
+    document.documentElement.style.setProperty("--fallback-background-color", light.color.fallbackBackground)
+    document.documentElement.style.setProperty("--link-color", light.color.link)
+  }
+}
+if (window.matchMedia) {
+  try {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if(e.matches) {
+          localStore.dark = true
+        } else {
+          localStore.dark = false
+        }
+        adjustTheme()
+    })
+  } catch(e) {
+    console.error(e)
+  }
+}
+
+const setup = () => {
+  if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    localStore.dark = true
+  } else {
+    localStore.dark = false
+  }
+  adjustTheme()
+
+  var html = document.getElementsByTagName('html')[0]
+  html.style.setProperty("transition", "0.3s color, 0.3s background")
+  var body = document.getElementsByTagName('body')[0]
+  body.style.setProperty("transition", "0.3s color, 0.3s background")
+}
+
+injectGlobal`
+  @font-face {
+    font-family: "SF Pro Display";
+    font-weight: 400;
+    src: url("/fonts/SFProDisplay-Regular.ttf");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-weight: 700;
+    src: url("/fonts/SFProDisplay-Bold.ttf");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-weight: 300;
+    src: url("/fonts/SFProDisplay-Light.ttf");
+  }
+  @font-face {
+    font-family: "SF Pro Display";
+    font-weight: 400;
+    font-style: italic;
+    src: url("/fonts/SFProDisplay-RegularItalic.ttf");
+  }
+  html {
+    font-family: 'SF Pro Display', -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0px;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  a {
+    text-decoration: none;
+    position: relative;
+  }
+`
+
+const CardContainer = styled.div`
+  display: flex;
+  
+  margin-top: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: auto;
+  @media screen and (max-width: ${({theme}) => theme.screen.width.desktop}px) {
+    margin-top: -48px;
+  }
+`
+
+
+const LightToggle = styled.button`
+  border: none;
+  background: transparent;
+  position: sticky;
+  float: right;
+  bottom: 20px;
+  right: 20px;
+  margin-top: -40px;
+  padding: 5px;
+  font-size: 24px;
+  text-decoration: none;
+  transform: translateY(0px);
+  transition: 0.3s transform ease-out;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-5px);
+    transition: 0.2s transform ease-out;
+  }
+`
+
+export default {
+  name: 'App',
+  components: {
+    Card,
+    Foot,
+    ThemeProvider,
+    CardContainer,
+    LightToggle,
+    Slide
+  },
+  computed: {
+    theme() {
+      return localStore.dark ? dark : light
+    },
+    isDark() {
+      return localStore.dark
+    }
+  },
+  methods: {
+    toggleTheme: () =>{
+      mutations.toggleDark()
+      adjustTheme()
+    },
+  },
+  data: () => ({
+    ...baseData,
+  }),
+
+}
+setup()
 </script>
+
+<!-- <style lang="scss">
+  .vnb {
+    .button-red {
+      background: #ff3b30;
+
+      &:hover {
+        background: darken(#ff3b30, 10%);
+      }
+    }
+  }
+</style> -->
+
 <style>
-.app{
-  text-align: center;
-}
-.no-gap{
-  margin: 0px;
-}
-.no-margin{
-  text-align: center;
-  margin: 0px;
+/* Hack until createGlobalStyles comes to vue-styled-components */
+ html {
+  /* var(--main-background-color) creates color gradient */
+  /* Ensures no white "bar" at bottom of page, white bar appears if background removed */
   background: var(--main-background-color);
   background-color: var(--fallback-background-color);
-  height: 100%;
 }
+.footer{
+  position: fixed;
+   bottom: 0;
+   margin-left: auto;
+}
+.centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25%;
+  margin-left: 25%;
+}
+/* provides uniform gradient background for larger div container holding navbar and main text*/
+.div-main{
+  background: var(--main-background-color);
+  background-color: var(--fallback-background-color); 
+  margin:0;
+}
+.card
+{
+  display: flex;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 75%;
+}
+
+body {
+  color: var(--main-color);
+  margin: 0;
+  padding: 0;
+}
+.main
+{
+ background-color: var(--main-background-color);
+ color: var(--main-background-color);
+ background: var(--main-background-color);
+ 
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+
+}
+a {
+  color: var(--link-color);
+}
+.app{
+  background-color: var(--main-background-color);
+  color: var(--main-background-color);
+} 
 .bm-burger-button {
       position: fixed;
       width: 36px;
@@ -77,7 +294,7 @@ export default {
       cursor: pointer;
     }
     .bm-burger-bars {
-      background-color: #373a47;
+      background-color: #ffffff;
     }
     .line-style {
       position: absolute;
@@ -105,19 +322,19 @@ export default {
       z-index: 1000; /* Stay on top */
       top: 0;
       left: 0;
-      background-color: rgb(63, 63, 65); /* Black*/
+      /* background-color: rgb(63, 63, 65); Black */
       overflow-x: hidden; /* Disable horizontal scroll */
       padding-top: 60px; /* Place content 60px from the top */
       transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
     }
 
-    .bm-overlay {
+    /* .bm-overlay {
       background: rgba(0, 0, 0, 0.3);
-    }
+    } */
     .bm-item-list {
       color: #b8b7ad;
       margin-left: 10%;
-      font-size: 20px;
+      font-size: 25px;
     }
     .bm-item-list > * {
       display: flex;
@@ -129,5 +346,4 @@ export default {
       font-weight: 700;
       color: white;
     }
-  
-</style> 
+</style>
