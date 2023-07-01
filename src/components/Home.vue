@@ -361,9 +361,9 @@ a {
       top: 36px;
       cursor: pointer;
     }
-    /* .bm-burger-bars {
+    .bm-burger-bars {
       background-color: #2b2b2b;
-    } */
+    }
     .line-style {
       position: absolute;
       height: 20%;

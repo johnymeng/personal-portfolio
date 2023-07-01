@@ -5,11 +5,6 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import Routes from './routes'
 
-// NavBar Imports
-// import { createApp } from 'vue';
-// import VueNavigationBar from 'vue-navigation-bar';
-// import 'vue-navigation-bar/dist/vue-navigation-bar.css';
-
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -18,6 +13,8 @@ const router = new VueRouter({
 })
 
 Vue.config.productionTip = false
+
+
 
 new Vue({
   el:'#app',
