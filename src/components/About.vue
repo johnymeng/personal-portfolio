@@ -37,13 +37,13 @@
 import Vue from 'vue'
 import styled from 'vue-styled-components'
 // import Hero from './Hero.vue'
-import Card from './Card.vue'
+import Card from './Card2.vue'
 // import MinorCard from './MinorCard.vue'
 // import LogoCard from './LogoCard.vue'
 import Foot from './Foot.vue'
 import { ThemeProvider, injectGlobal } from 'vue-styled-components'
 // import { MainTitle } from './styles/Text.ts'
-import baseData from '@/data/fixtures.ts'
+import baseData from '@/data/about.ts'
 import light from '@/themes/light.ts'
 import dark from '@/themes/dark.ts'
 //Hamburger Menu
@@ -242,8 +242,8 @@ setup()
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 25%;
-  margin-left: 25%;
+  margin-top: auto;
+  margin-left: auto;
 }
 /* provides uniform gradient background for larger div container holding navbar and main text*/
 .div-main{
@@ -254,11 +254,10 @@ setup()
 .card
 {
   display: flex;
-  margin-top: 25%;
-  margin-bottom: 25%;
-  margin-left: 25%;
-  margin-right: 25%;
-  width: 75%;
+  margin-top: 8%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
 }
 
 body {
