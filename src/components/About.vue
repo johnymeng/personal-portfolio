@@ -164,7 +164,7 @@ const LightToggle = styled.button`
   float: right;
   bottom: 20px;
   right: 20px;
-  margin-top: -40px;
+  margin-top: 100px;
   padding: 5px;
   font-size: 24px;
   text-decoration: none;

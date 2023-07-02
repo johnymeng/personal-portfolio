@@ -95,7 +95,7 @@ const LeftContainer = styled.div`
 //Changes Margin of Text Container
   margin-right: 60px;
   display: flex;
-  margin-top: 25%;
+  margin-top: 30%;
   justify-content: space-between;
   flex-direction: column;
 
