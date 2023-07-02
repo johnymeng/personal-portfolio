@@ -91,8 +91,11 @@ const Contents = styled.div`
 
 const LeftContainer = styled.div`
   width: 320px;
-  margin-right: 10px;
+  height: 100%;
+//Changes Margin of Text Container
+  margin-right: 60px;
   display: flex;
+  margin-top: 25%;
   justify-content: space-between;
   flex-direction: column;
 

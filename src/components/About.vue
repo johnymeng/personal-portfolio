@@ -36,13 +36,9 @@
 <script>
 import Vue from 'vue'
 import styled from 'vue-styled-components'
-// import Hero from './Hero.vue'
 import Card from './Card2.vue'
-// import MinorCard from './MinorCard.vue'
-// import LogoCard from './LogoCard.vue'
 import Foot from './Foot.vue'
 import { ThemeProvider, injectGlobal } from 'vue-styled-components'
-// import { MainTitle } from './styles/Text.ts'
 import baseData from '@/data/about.ts'
 import light from '@/themes/light.ts'
 import dark from '@/themes/dark.ts'
@@ -250,6 +246,7 @@ setup()
   background: var(--main-background-color);
   background-color: var(--fallback-background-color); 
   margin:0;
+  height: 100%;
 }
 .card
 {
