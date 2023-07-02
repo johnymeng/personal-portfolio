@@ -10,6 +10,9 @@
         <router-link to='About'>
           <span>About</span>
         </router-link>
+        <router-link to='Projects'>
+          <span>Projects</span>
+        </router-link>
         <router-link to='Contact'>
           <span>Contact</span>
         </router-link>

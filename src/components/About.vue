@@ -10,6 +10,9 @@
         <router-link to='About'>
           <span>About</span>
         </router-link>
+        <router-link to='Projects'>
+          <span>Projects</span>
+        </router-link>
         <router-link to='Contact'>
           <span>Contact</span>
         </router-link>
@@ -208,18 +211,6 @@ export default {
 }
 setup()
 </script>
-
-<!-- <style lang="scss">
-  .vnb {
-    .button-red {
-      background: #ff3b30;
-
-      &:hover {
-        background: darken(#ff3b30, 10%);
-      }
-    }
-  }
-</style> -->
 
 <style>
 /* Hack until createGlobalStyles comes to vue-styled-components */

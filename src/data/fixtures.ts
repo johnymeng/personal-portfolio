@@ -55,6 +55,7 @@ export default {
         description: "Ongoing and completed projects.",
         link: {
           name: "My Projects",
+          // add link to projects
           url: "https://github.com/zendesk/volunteer_portal"
         }
       },
@@ -63,7 +64,7 @@ export default {
         description: "My experience as a part of SKULE 2T6.",
         link: {
           name: "UofT",
-          url: "https://samzx.itch.io/weightless-vr"
+          url: "https://www.engineering.utoronto.ca/"
         }
       },
       {
@@ -71,7 +72,7 @@ export default {
         description: "3 Years in VRC, 3 World Championships.",
         link: {
           name: "VEX",
-          url: "https://github.com/samzx/soft-portfolio"
+          url: "https://www.vexrobotics.com/competition?___store=vexroboticsca&___from_store=vexrobotics"
         }
       }
     ]
@@ -91,9 +92,9 @@ export default {
         alt: "Vex Robotics"
       },
       {
-        src: "/logos/London_Drugs_Logo.svg",
-        url: "https://cash.app/",
-        alt: "London Drugs"
+        src: "/logos/claremont_2.svg",
+        url: "https://claremont.saanichschools.ca/",
+        alt: "Claremont Secondary"
       }
   ]
   },
