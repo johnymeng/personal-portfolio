@@ -19,7 +19,7 @@
         </Slide>
       </div>
     
-        <div id = "main">
+        <div id = "main" class = "main">
           <card-container id="products">
             <card class = "card"
               v-for="(product, index) in products.featured" :key="index"
@@ -39,10 +39,17 @@
               v-bind:links="product.links"
               v-bind:images="product.images"
             />
+              <logo-container>
+                <logo-card
+                  v-for="(logo, index) in logoSection.logos && logoSection.logos.slice(0,3)" :key="index"
+                  v-bind:src="logo.src"
+                  v-bind:url="logo.url"
+                />
+              </logo-container>
           </card-container>
-            <foot v-bind:author="author" v-bind:footer="footer"/>
-            <light-toggle v-on:click="toggleTheme()"><span v-if="!isDark" >💡</span><span v-if="isDark">💡</span></light-toggle>
-        </div>
+          <foot v-bind:author="author" v-bind:footer="footer"/>
+          <light-toggle v-on:click="toggleTheme()"><span v-if="!isDark" >💡</span><span v-if="isDark">💡</span></light-toggle>
+      </div>
       </div>
       
     
@@ -52,10 +59,10 @@
   <script>
   import Vue from 'vue'
   import styled from 'vue-styled-components'
-  import Card from './Project_card.vue'
+  import Card from './Card.vue'
   import Foot from './Foot.vue'
   import { ThemeProvider, injectGlobal } from 'vue-styled-components'
-  import baseData from '@/data/VEX.ts'
+  import baseData from '@/data/fixtures.ts'
   import light from '@/themes/light.ts'
   import dark from '@/themes/dark.ts'
   //Hamburger Menu
@@ -292,7 +299,6 @@
         background-color: var(--main-color);
       }
       .line-style {
-        background-color: var(--main-color);
         position: absolute;
         height: 20%;
         left: 0;

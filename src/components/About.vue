@@ -281,7 +281,7 @@ a {
       cursor: pointer;
     }
     .bm-burger-bars {
-      background-color: #ffffff;
+      background-color: var(--main-color);
     }
     .line-style {
       position: absolute;
