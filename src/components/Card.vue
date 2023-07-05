@@ -13,7 +13,8 @@
             </styled-carousel>
           </carousel-container>
           <subtitle>{{summary}}</subtitle>
-          <paragraph v-for="(text, index) in copy" :key="index">{{text}}</paragraph>
+          <!-- class margin provides 35px bottom bargin between text summary and learn more box -->
+          <paragraph class = "margin" v-for="(text, index) in copy" :key="index">{{text}}</paragraph>
         </div>
         <button-container :empty="!copy">
           <styled-button
@@ -264,3 +265,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .margin{
+    margin-bottom: 35px;
+  }
+</style>
