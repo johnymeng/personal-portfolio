@@ -28,25 +28,28 @@ export default {
             "/doubletext/teng_2.jpg",
           ]
         },
-        // {
-        //   name: "ClimbList",
-        //   medium: "React · Next.js",
-        //   summary: "Construction is now in progress.",
-        //   copy: [
-        //     "Compare and track grades and pricing between gyms around the country.",
-        //   ],
-        //   links: {
-        //     color: "#363636",
-        //     primary: {
-        //       name: "Learn more",
-        //       url: "https://climblist.com/"
-        //     }
-        //   },
-        //   images: [
-        //     "/climblist/0.jpg",
-        //     "/climblist/1.jpg",
-        //   ]
-        // }
+      ],
+      //adjust padding for text within vex card
+      vex: [
+        {
+            name: "ClimbList",
+            medium: "React · Next.js",
+            summary: "Construction is now in progress.",
+            copy: [
+              "Compare and track grades and pricing between gyms around the country. Compare and track grades and pricing between gyms around the country.",
+            ],
+            links: {
+              color: "#363636",
+              primary: {
+                name: "Learn more",
+                url: "https://climblist.com/"
+              }
+            },
+            images: [
+              "/climblist/0.jpg",
+              "/climblist/1.jpg",
+            ]
+          },
       ],
       // Only supports 0-3 at the moment
       minor: [

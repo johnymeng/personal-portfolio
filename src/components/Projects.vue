@@ -31,7 +31,7 @@
             v-bind:images="product.images"
           />
           <card class = "small-margin"
-            v-for="(product, index) in products.featured" :key="index"
+            v-for="(product, index) in products.vex" :key="index"
             v-bind:name="product.name"
             v-bind:medium="product.medium"
             v-bind:summary="product.summary"
