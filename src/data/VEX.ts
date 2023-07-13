@@ -8,16 +8,16 @@ export default {
     products: {
       featured: [
         {
-          name: "Bio-Based Triboelectric Nanogenerators",
-          medium: "Lightweight · Durable · Efficient",
-          summary: "Wood based aerogels doped with reduced graphene oxide to increase dielectric constant and charge transfer.",
-          //copy: [
-          //  "See millions of messages at a glance, without data leaving your computer."
-          //],
+          name: "VEX VRC V5 Robotics",
+          medium: "C++ · Embedded Systems · CAD",
+          summary: "Team Leader and Driver for Team 1022A.",
+          copy: [
+           "3x World Championship Qualifier, 3x Excellence Award Winner \nPeak Rank: 140/25,000."
+          ],
           links: {
             color: "#363636",
             primary: {
-              name: "Discover",
+              name: "Learn More",
               url: "https://ningyanlab.com/"
             }
           },
@@ -32,11 +32,11 @@ export default {
       //adjust padding for text within vex card
       vex: [
         {
-            name: "ClimbList",
-            medium: "React · Next.js",
-            summary: "Construction is now in progress.",
+            name: "Reversi AI",
+            medium: "Language: C · APS105 Lib",
+            summary: "Mini-Max Alpha-Beta Pruning AI CLI Program written in C for APS105 at UofT.",
             copy: [
-              "Compare and track grades and pricing between gyms around the country. Compare and track grades and pricing between gyms around the country.",
+              "Depth 8 per move within 1 second run time. Beats course AI, APS105_Smartest, 55-1. Placed 13th out of approx. 550 students.",
             ],
             links: {
               color: "#363636",
