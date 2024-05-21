@@ -62,7 +62,7 @@ import styled from 'vue-styled-components'
 import Card from './Card.vue'
 import Foot from './Foot.vue'
 import { ThemeProvider, injectGlobal } from 'vue-styled-components'
-import baseData from '@/data/VEX.ts'
+import baseData from '@/data/fixtures.ts'
 import light from '@/themes/light.ts'
 import dark from '@/themes/dark.ts'
 //Hamburger Menu
